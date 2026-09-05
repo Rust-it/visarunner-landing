@@ -1,0 +1,1225 @@
+/* VisaRunner landing — extracted verbatim from the production page's inline <style>.
+   Design tokens, sections and breakpoints are unchanged. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:   #080b10;
+  --navy2:  #0d1118;
+  --navy3:  #111820;
+  /* Единый акцент. Раньше свечения и тени шли через #00C4B4 —
+     на 12.8° по тону и 15% по светлоте мимо брендового циана. */
+  --accent-rgb: 34 211 238;
+  --container: 1200px;
+  --teal:   rgb(var(--accent-rgb));
+  --teal2:  #06b6d4;
+  --teal3:  #38bdf8;
+  --white:  #FFFFFF;
+  --gray:   #8896A8;
+  --light:  #E8EDF5;
+  --card:   #0d1118;
+  --border: rgba(255,255,255,0.08);
+
+  /* ── Типографика ──────────────────────────────────────────────
+     Шесть статичных ступеней. Display-кегли остаются резиновыми:
+     фиксировать их значило бы ломать масштабирование заголовков. */
+  --fs-xs:   0.75rem;   /* 12px — бейджи, надзаголовки, сноски      */
+  --fs-sm:   0.875rem;  /* 14px — вторичный текст, пункты списков   */
+  --fs-md:   1rem;      /* 16px — базовый                           */
+  --fs-lg:   1.25rem;   /* 20px — подзаголовки карточек             */
+  --fs-xl:   1.5rem;    /* 24px — номера шагов                      */
+  --fs-2xl:  2rem;      /* 32px — числа в hero-статистике           */
+  --fs-3xl:  3rem;      /* 48px — цена в тарифе                     */
+
+  --fs-lead:    clamp(1rem, 2.2vw, 1.2rem);
+  --fs-h2:      clamp(1.8rem, 4vw, 2.8rem);
+  --fs-display: clamp(2.8rem, 7vw, 5rem);
+
+  /* Иконки живут своей шкалой: это графика, а не текст, и подгонять
+     её под кегли значило бы менять размер картинок ради таблицы. */
+  --icon-sm: 2rem;   /* 32px — иконки преимуществ */
+  --icon-lg: 3rem;   /* 48px — эмодзи в pain-цитатах */
+
+  /* ── Радиусы ──────────────────────────────────────────────────
+     Кнопки все на --r-md: это радиус btn-primary, главной кнопки
+     в hero, поэтому самый заметный элемент не меняется. */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-full: 100px;
+
+  /* ── Отступы ──────────────────────────────────────────────────
+     Шаг 4px. Две схемы карточек вместо пяти. */
+  --pad-card:  2rem;          /* 32px — pain, benefit, pricing, step */
+  --pad-panel: 4.5rem 3rem;   /* 72/48 — финальный CTA-блок          */
+
+  /* Вертикальный ритм: дефолт секции 100px, связанные пары жмутся
+     до 64px, перед финальным CTA — пауза 160px. */
+  --sp-tight:   64px;
+  --sp-section: 100px;
+  --sp-loose:   160px;
+
+  /* ── Движение ─────────────────────────────────────────────────
+     Амбиентные кейфреймы (орбы, пульсация) свои длительности
+     сохраняют — это не интерфейсные переходы. */
+  --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur:      250ms;
+  --dur-slow: 700ms;  /* появление блоков при скролле */
+  --stagger:  80ms;   /* шаг каскада внутри блока     */
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAVBAR ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 5%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(11,17,32,0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--dur) var(--ease);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--teal); }
+.nav-logo img { display: block; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--gray);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: color var(--dur-fast) var(--ease);
+}
+.nav-links a:hover { color: var(--white); }
+
+/* Лежит в .nav-actions, а не в .nav-links, поэтому «.nav-links a»
+   его не перебивает и !important здесь не нужен. */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  background: var(--teal);
+  color: var(--navy);
+  padding: 0 1.25rem;
+  border-radius: var(--r-md);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.nav-cta:hover { background: var(--teal3); transform: translateY(-1px); }
+
+/* На десктопе держим конкретику «14-Day», на мобиле — короткий вариант,
+   иначе CTA не влезает в строку навбара вместе с логотипом и бургером. */
+.nav-cta-short { display: none; }
+
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.nav-signin {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  padding: 0 1rem;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: border-color var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+.nav-signin:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.35);
+}
+
+/* shown only inside open hamburger on mobile */
+.nav-mobile-signin { display: none; }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--white);
+  border-radius: var(--r-full);
+  transition: all var(--dur) var(--ease);
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 5% 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgb(var(--accent-rgb) / 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,100,200,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
+/* hero orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero-orb-1 {
+  width: 700px; height: 480px;
+  background: radial-gradient(ellipse, rgb(var(--accent-rgb) / 0.16) 0%, transparent 70%);
+  top: -160px; left: 50%;
+  transform: translateX(-50%);
+  animation: orbFloat1 9s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 420px; height: 360px;
+  background: radial-gradient(ellipse, rgba(30,80,255,0.12) 0%, transparent 70%);
+  bottom: 60px; right: -80px;
+  animation: orbFloat2 11s ease-in-out infinite;
+}
+.hero-orb-3 {
+  width: 300px; height: 260px;
+  background: radial-gradient(ellipse, rgb(var(--accent-rgb) / 0.07) 0%, transparent 70%);
+  bottom: 100px; left: -50px;
+  animation: orbFloat2 7s ease-in-out infinite reverse;
+}
+@keyframes orbFloat1 {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-28px); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-18px); }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgb(var(--accent-rgb) / 0.12);
+  border: 1px solid rgb(var(--accent-rgb) / 0.3);
+  color: var(--teal);
+  padding: 0.4rem 1rem;
+  border-radius: var(--r-full);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  background: var(--teal);
+  border-radius: var(--r-full);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Ось opsz у Bricolage подключена (12..96) — на display-кегле
+   optical-sizing даёт более узкие апертуры и плотный ритм. */
+h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: var(--fs-display);
+  font-optical-sizing: auto;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  max-width: 880px;
+  margin-bottom: 1.5rem;
+}
+h1 .h1-gradient {
+  background: linear-gradient(130deg, var(--teal) 0%, #00e8d8 45%, #5ef0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: var(--fs-lead);
+  color: var(--gray);
+  max-width: 580px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--teal);
+  color: var(--navy);
+  padding: 0.9rem 2rem;
+  border-radius: var(--r-md);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+  box-shadow: 0 4px 28px rgb(var(--accent-rgb) / 0.38);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  animation: btnShimmer 3.2s infinite;
+}
+@keyframes btnShimmer {
+  to { left: 200%; }
+}
+.btn-primary:hover {
+  background: var(--teal3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 44px rgb(var(--accent-rgb) / 0.5);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--white);
+  padding: 0.9rem 2rem;
+  border-radius: var(--r-md);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Укрупнённый вариант главной кнопки — финальный CTA. */
+.btn-primary--lg {
+  font-size: var(--fs-md);
+  padding: 1rem 2.5rem;
+}
+
+.hero-note {
+  font-size: var(--fs-sm);
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+.hero-note span { margin: 0 0.4rem; opacity: 0.4; }
+
+.hero-flags {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-flags-label {
+  font-size: var(--fs-xs);
+  color: var(--gray);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+}
+/* Не эмодзи-флаги: Windows не поставляет шрифт с regional indicator,
+   и 🇻🇳 деградирует в «VN» — выглядит как поломка. Коды в рамках
+   читаются одинаково на всех платформах и попадают в типографику
+   остальных капс-лейблов страницы. */
+.hero-flags-codes {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.country-code {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  line-height: 1.2;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--teal);
+  display: block;
+}
+.hero-stat-label { font-size: var(--fs-xs); color: var(--gray); }
+
+/* ─── SECTION COMMON ─── */
+section { padding: var(--sp-section) 5%; }
+
+/* Ритм повествования: «проблема → решение» и «что получаешь → сколько
+   стоит» читаются как пары, поэтому внутри пары шов уже. Перед
+   финальным CTA, наоборот, пауза. */
+#pain     { padding-bottom: var(--sp-tight); }
+#how      { padding-top:    var(--sp-tight); }
+#features { padding-bottom: var(--sp-tight); }
+#pricing  { padding-top:    var(--sp-tight); }
+#cta      { padding-top:    var(--sp-loose); }
+
+/* Общая мера ширины. До неё гриды тянулись во весь вьюпорт, и на 2560px
+   левые края соседних секций расходились на сотни пикселей. */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/* Надзаголовок: вес 600 и разрядка. Семисотка здесь спорила с h2
+   за внимание — у метки и заголовка был одинаковый голос. */
+.section-label {
+  display: inline-block;
+  color: var(--teal);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* h1 держит 800, h2 — 700: иначе два уровня заголовков звучат
+   одинаково и иерархия читается только по кеглю. */
+h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: var(--fs-h2);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  color: var(--gray);
+  font-size: var(--fs-md);
+  /* В ch, а не в px: мера привязана к кеглю. balance убирает висячее слово. */
+  max-width: 46ch;
+  line-height: 1.7;
+  text-wrap: balance;
+}
+
+.section-header { margin-bottom: 3.5rem; }
+.section-header.centered { text-align: center; }
+.section-header.centered .section-sub { margin: 0 auto; }
+
+/* ─── PAIN ─── */
+#pain { background: var(--navy2); }
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.pain-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--pad-card);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease),
+              transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+.pain-card::after {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgb(var(--accent-rgb) / 0.1) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+  pointer-events: none;
+}
+.pain-card:hover {
+  border-color: rgb(var(--accent-rgb) / 0.38);
+  transform: translateY(-6px);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.28),
+    0 0 0 1px rgb(var(--accent-rgb) / 0.15),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.pain-card:hover::after { opacity: 1; }
+
+/* Эмодзи здесь осознанно: это эмоция говорящего в цитате, а не
+   иконка интерфейса. Иконки-функции ниже — Lucide. */
+.pain-emoji {
+  font-size: var(--icon-lg);
+  margin-bottom: 1.1rem;
+  display: block;
+  line-height: 1;
+  filter: drop-shadow(0 4px 10px rgb(var(--accent-rgb) / 0.25));
+  transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease);
+}
+.pain-card:hover .pain-emoji {
+  transform: scale(1.08) translateY(-2px);
+  filter: drop-shadow(0 6px 16px rgb(var(--accent-rgb) / 0.38));
+}
+.pain-card h3 { font-size: var(--fs-md); font-weight: 700; line-height: 1.45; color: var(--light); }
+
+/* ─── HOW IT WORKS ─── */
+#how {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy2) 100%);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+/* Соединительная линия идёт через центры кружков, а не через
+   подобранное на глаз число: рамка карточки + её паддинг + половина
+   кружка. При смене --pad-card линия поедет вместе с ними. */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: calc(1px + var(--pad-card) + 32px);
+  left: calc(16.67% + 32px);
+  right: calc(16.67% + 32px);
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgb(var(--accent-rgb) / 0.25) 15%,
+    rgb(var(--accent-rgb) / 0.5) 50%,
+    rgb(var(--accent-rgb) / 0.25) 85%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.step {
+  text-align: center;
+  padding: var(--pad-card);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  position: relative;
+  z-index: 1;
+  transition: border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
+}
+.step:hover {
+  border-color: rgb(var(--accent-rgb) / 0.4);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.24), 0 0 40px rgb(var(--accent-rgb) / 0.1);
+  transform: translateY(-5px);
+}
+
+.step-num {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, rgb(var(--accent-rgb) / 0.14), rgb(var(--accent-rgb) / 0.04));
+  border: 1.5px solid rgb(var(--accent-rgb) / 0.45);
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--teal);
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 8px rgb(var(--accent-rgb) / 0.06), 0 0 28px rgb(var(--accent-rgb) / 0.22);
+  animation: stepRing 3.5s ease-in-out infinite;
+}
+.step:nth-child(2) .step-num { animation-delay: 1.15s; }
+.step:nth-child(3) .step-num { animation-delay: 2.3s; }
+@keyframes stepRing {
+  0%,100% { box-shadow: 0 0 0 8px rgb(var(--accent-rgb) / 0.06), 0 0 28px rgb(var(--accent-rgb) / 0.22); }
+  50%      { box-shadow: 0 0 0 14px rgb(var(--accent-rgb) / 0.04), 0 0 44px rgb(var(--accent-rgb) / 0.32); }
+}
+
+.step h3 { font-size: var(--fs-md); font-weight: 700; margin-bottom: 0.5rem; }
+.step p { font-size: var(--fs-sm); color: var(--gray); line-height: 1.65; }
+
+/* ─── FEATURES ─── */
+/* Раньше здесь жили 8 фича-карточек, а выгоды дублировались отдельной
+   секцией #why. Слито в один блок из 4 пунктов на .benefits-grid;
+   Pro-функции перечислены в прайсе и из этого блока убраны. */
+#features { background: var(--navy2); }
+
+/* ─── PRICING ─── */
+#pricing {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy2) 50%, var(--navy) 100%);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--pad-card);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pricing-card:hover { transform: translateY(-4px); }
+
+.plan-features { flex: 1; }
+
+.pricing-card.popular {
+  background: linear-gradient(160deg, #0e1c32 0%, #091420 100%);
+  border: none;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0 1.5px var(--teal),
+    0 20px 72px rgb(var(--accent-rgb) / 0.28),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  z-index: 2;
+}
+.pricing-card.popular:hover {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow:
+    0 0 0 1.5px var(--teal3),
+    0 30px 90px rgb(var(--accent-rgb) / 0.38),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+}
+.pricing-card.popular::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-lg);
+  background: radial-gradient(ellipse 85% 45% at 50% 0%, rgb(var(--accent-rgb) / 0.14) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--teal), var(--teal3));
+  color: var(--navy);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 1.1rem;
+  border-radius: var(--r-full);
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgb(var(--accent-rgb) / 0.55);
+}
+
+.plan-name {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Вес 700, а не 900: DM Sans подключён до 700, и «900» рисовался
+   той же семисоткой — цифра в исходнике обещала то, чего нет. */
+.plan-price {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.plan-price sub {
+  font-size: var(--fs-md);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--gray);
+  vertical-align: middle;
+}
+
+.plan-desc {
+  font-size: var(--fs-sm);
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  margin-bottom: 0.75rem;
+  color: var(--light);
+}
+.plan-features li::before {
+  content: '✓';
+  color: var(--teal);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.plan-btn {
+  display: block;
+  text-align: center;
+  padding: 0.85rem;
+  border-radius: var(--r-md);
+  font-weight: 700;
+  font-size: var(--fs-md);
+  text-decoration: none;
+  transition: all var(--dur-fast) var(--ease);
+}
+.plan-btn.outline {
+  border: 1px solid var(--border);
+  color: var(--white);
+}
+.plan-btn.outline:hover {
+  border-color: rgb(var(--accent-rgb) / 0.5);
+  background: rgb(var(--accent-rgb) / 0.07);
+}
+.plan-btn.filled {
+  position: relative;
+  overflow: hidden;
+  background: var(--teal);
+  color: var(--navy);
+  box-shadow: 0 4px 24px rgb(var(--accent-rgb) / 0.38);
+}
+.plan-btn.filled::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  animation: btnShimmer 3.2s infinite;
+}
+.plan-btn.filled:hover {
+  background: var(--teal3);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 36px rgb(var(--accent-rgb) / 0.5);
+}
+
+.pricing-note {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: var(--fs-sm);
+  color: var(--gray);
+}
+
+/* ─── BILLING TOGGLE ─── */
+.billing-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: var(--navy3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  padding: 4px;
+  gap: 2px;
+  margin: 1.5rem auto 0;
+}
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  gap: 0.45rem;
+  padding: 0 1.25rem;
+  border-radius: var(--r-full);
+  border: none;
+  background: transparent;
+  color: var(--gray);
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+.toggle-btn.active {
+  background: var(--teal);
+  color: var(--navy);
+}
+.toggle-btn .save-badge {
+  background: rgb(var(--accent-rgb) / 0.15);
+  color: var(--teal);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--r-full);
+}
+.toggle-btn.active .save-badge {
+  background: rgba(8,11,16,0.2);
+  color: var(--navy);
+}
+.yearly-save,
+.monthly-hint {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  margin-top: 0.3rem;
+  margin-bottom: 0.85rem;
+}
+.yearly-save { color: var(--teal); }
+/* Подсказка про годовую скидку — вторичная: приглушена, чтобы не
+   конкурировать с ценой, которую спишут при первой оплате. */
+.monthly-hint { color: var(--gray); font-weight: 600; }
+
+/* Состояние переключателя живёт в CSS, JS только вешает класс на секцию.
+   Раньше начальное «display:none» стояло инлайн в разметке, а скрипт
+   снимал его пустой строкой — перенос в класс без этой переделки
+   навсегда спрятал бы месячные цены.
+
+   По умолчанию (без класса) показан МЕСЯЧНЫЙ тариф: именно его спишут
+   при первой оплате, и цена на странице обязана совпадать с суммой в
+   чекауте. Годовой показывается только по явному выбору (.is-yearly). */
+.price-yearly  { display: none; }
+.yearly-save   { display: none; }
+#pricing.is-yearly .price-yearly  { display: inline; }
+#pricing.is-yearly .price-monthly { display: none; }
+#pricing.is-yearly .yearly-save   { display: block; }
+#pricing.is-yearly .monthly-hint  { display: none; }
+
+/* ─── BENEFIT CARDS (секция #features) ─── */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  /* Осознанно уже контейнера — долей от него, а не случайным пикселем. */
+  max-width: calc(var(--container) * 0.72);
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--pad-card);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  transition: border-color var(--dur) var(--ease),
+              transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+.benefit-card:hover {
+  border-color: rgb(var(--accent-rgb) / 0.32);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.22), 0 0 0 1px rgb(var(--accent-rgb) / 0.1);
+}
+
+/* Lucide вместо эмодзи: эмодзи рисует шрифт ОС, поэтому 📊 на macOS,
+   Windows и Android — три разные картинки, и ни одну нельзя покрасить
+   в брендовый циан. Контурные иконки наследуют цвет и толщину штриха. */
+.benefit-icon {
+  flex-shrink: 0;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  margin-top: 0.1rem;
+  color: var(--teal);
+  transition: transform var(--dur) var(--ease);
+}
+.benefit-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.benefit-card:hover .benefit-icon { transform: translateY(-2px); }
+
+.benefit-card h3 {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--light);
+}
+.benefit-card p {
+  font-size: var(--fs-sm);
+  color: var(--gray);
+  line-height: 1.65;
+}
+
+/* ─── FOOTER LINKS ─── */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--fs-xs);
+  color: var(--gray);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: color var(--dur-fast) var(--ease),
+              opacity var(--dur-fast) var(--ease);
+}
+.footer-links a:hover { color: var(--teal); opacity: 1; }
+
+/* ─── FINAL CTA ─── */
+#cta {
+  background: var(--navy);
+  text-align: center;
+}
+
+.cta-wrap {
+  position: relative;
+  max-width: calc(var(--container) * 0.6);
+  margin: 0 auto;
+}
+.cta-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  /* +2px к радиусу коробки: рамка обводит её снаружи и должна идти
+     эквидистантно, иначе на скруглениях появляется утолщение. */
+  border-radius: calc(var(--r-lg) + 2px);
+  background: linear-gradient(130deg,
+    rgb(var(--accent-rgb) / 0.55) 0%,
+    rgba(30,70,255,0.22) 50%,
+    rgb(var(--accent-rgb) / 0.3) 100%);
+  z-index: 0;
+}
+.cta-box {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(160deg, #101c32 0%, #070e1c 100%);
+  border-radius: var(--r-lg);
+  padding: var(--pad-panel);
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 500px; height: 320px;
+  background: radial-gradient(ellipse, rgb(var(--accent-rgb) / 0.13) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Кегль наследуется от h2: два почти одинаковых clamp (2.6 и 2.8rem)
+   были расхождением без причины. Перенос строки раньше стоял <br/> в
+   разметке и был подогнан под старый кегль — на новом заголовок
+   разъезжался на три строки. Балансировка держит две на любом кегле. */
+.cta-box h2 {
+  margin-bottom: 0.75rem;
+  text-wrap: balance;
+  hyphens: none;
+}
+.cta-box p { color: var(--gray); margin-bottom: 2rem; font-size: var(--fs-md); line-height: 1.7; }
+
+/* Сноска под кнопкой финального CTA. */
+.cta-note {
+  margin-top: 1rem;
+  font-size: var(--fs-sm);
+  color: var(--gray);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy2);
+  border-top: 1px solid var(--border);
+  padding: 2rem 5%;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 800;
+  color: var(--white);
+  text-decoration: none;
+}
+.footer-logo span { color: var(--teal); }
+.footer-logo img { display: block; opacity: 0.9; }
+
+/* Правая группа подвала: копирайт и контакт. */
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-countries {
+  font-size: var(--fs-sm);
+  color: var(--gray);
+}
+.footer-countries a {
+  color: var(--gray);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+.footer-countries a:hover { color: var(--teal); }
+
+.footer-copy {
+  font-size: var(--fs-xs);
+  color: var(--gray);
+  opacity: 0.7;
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity var(--dur-slow) var(--ease),
+              transform var(--dur-slow) var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+/* Каскад кратен одному шагу — раньше здесь лежали пять чисел,
+   включая 0.4s и 0.40s в соседних строках. */
+.reveal-delay-1 { transition-delay: calc(var(--stagger) * 1); }
+.reveal-delay-2 { transition-delay: calc(var(--stagger) * 2); }
+.reveal-delay-3 { transition-delay: calc(var(--stagger) * 3); }
+.reveal-delay-4 { transition-delay: calc(var(--stagger) * 4); }
+.reveal-delay-5 { transition-delay: calc(var(--stagger) * 5); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 72px 6%; }
+
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: var(--navy2);
+    padding: 1.5rem 6%;
+    border-bottom: 1px solid var(--border);
+    gap: 0.25rem;
+  }
+
+  .nav-signin--desktop { display: none; }
+
+  .nav-mobile-signin { display: list-item; }
+
+  /* Место экономим кеглем и текстом, но не высотой: 44px — минимум
+     тап-таргета, паддинги ужимать нельзя. */
+  .nav-actions .nav-cta {
+    font-size: var(--fs-xs);
+    padding: 0 0.9rem;
+  }
+  .nav-cta-full { display: none; }
+  .nav-cta-short { display: inline; }
+
+  /* Пункты раскрытого меню — тоже тап-таргеты; gap уменьшен,
+     потому что высоту теперь задаёт сам пункт. */
+  .nav-links.open a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .hero-flags {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .hero-flags-label { margin-right: 0; }
+
+  h1 { letter-spacing: -1px; }
+
+  .hero-stats { gap: 2rem; }
+
+  /* Радиус держит токен: раньше здесь были 22 и 24px, и после
+     приведения десктопа к 20px мобильная «уменьшённая» коробка
+     оказалась бы скруглена сильнее десктопной. */
+  .cta-box { padding: 2.5rem 1.5rem; }
+
+  .footer-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
+
+  .footer-links { flex-direction: column; align-items: center; gap: 0; }
+
+  .pricing-card.popular { transform: none; }
+  .pricing-card.popular:hover { transform: translateY(-4px); }
+
+  .steps { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+}
+
+@media (max-width: 480px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pain-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── INTERACTION STATES ─── */
+
+/* Видимый фокус: до этого Tab по странице шёл вслепую. */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+
+/* Отклик на нажатие. На тач-устройствах — основном рынке — это
+   единственная обратная связь: hover там не срабатывает. */
+.btn-primary:active,
+.btn-secondary:active,
+.plan-btn:active,
+.nav-cta:active,
+.nav-signin:active,
+.toggle-btn:active {
+  transform: scale(0.985);
+}
+
+/* Не навязывать тачу эффекты наведения: без указателя они залипают
+   после тапа и читаются как сломанное состояние. */
+@media (hover: none) {
+  .pain-card:hover,
+  .step:hover,
+  .benefit-card:hover,
+  .pricing-card:hover,
+  .pricing-card.popular:hover {
+    transform: none;
+  }
+  .pain-card:hover::after { opacity: 0; }
+}
+
+/* Семь бесконечных анимаций (орбы с blur(80px), пульсация, шиммер,
+   кольца шагов) не отключались ничем. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ─── SCROLL BAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--navy3); border-radius: var(--r-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--teal2); }

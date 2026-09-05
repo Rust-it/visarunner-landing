@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 68" width="268" height="68">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');</style>
+  </defs>
+  <!-- V mark — white, no background -->
+  <path d="M18 18 L34 50 L50 18"
+        stroke="#FFFFFF"
+        stroke-width="6.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+  <!-- Wordmark — all white -->
+  <text x="66" y="45"
+        font-family="'Bricolage Grotesque', 'Arial Black', sans-serif"
+        font-size="28"
+        font-weight="800"
+        letter-spacing="-0.5"
+        fill="#FFFFFF">VisaRunner</text>
+</svg>

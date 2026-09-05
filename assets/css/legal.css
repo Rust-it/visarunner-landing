@@ -1,0 +1,246 @@
+/* VisaRunner legal pages (privacy / terms).
+   The originals were Next.js pages styled with React inline `style` objects; the
+   same declarations are transcribed here as classes — values, spacing and colours
+   are unchanged. Tokens mirror app/globals.css. */
+
+:root {
+  --bg:          #080b10;
+  --text-1:      #e2e8f0;
+  --text-bright: #cbd5e1;
+  --text-2:      #94a3b8;
+  --text-muted:  #64748b;
+  --text-3:      #475569;
+  --cyan:        #22d3ee;
+  --warning:     #fbbf24;
+  --hairline:    rgba(255, 255, 255, 0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  min-height: 100vh;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Видимый фокус для клавиатурной навигации. Мышиные клики его не показывают. */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.18);
+  color: var(--text-1);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1c2b3a var(--bg);
+}
+*::-webkit-scrollbar        { width: 5px; height: 5px; }
+*::-webkit-scrollbar-track  { background: var(--bg); }
+*::-webkit-scrollbar-thumb  { background: #1c2b3a; border-radius: 3px; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Layout ───────────────────────────────────────────────────── */
+
+.accent-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan) 40%, transparent);
+}
+
+.legal-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 5rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-3);
+  font-size: 0.82rem;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+}
+
+.legal-head { margin-bottom: 3rem; }
+
+.legal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.06);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  color: var(--cyan);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.legal-head h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--text-1);
+  margin: 0 0 0.5rem;
+}
+
+.legal-meta {
+  font-size: 0.85rem;
+  color: var(--text-3);
+  margin: 0;
+}
+
+/* ── Sections ─────────────────────────────────────────────────── */
+
+.legal-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Последняя секция («Contact») в оригинале шла без разделителя. */
+.legal-section--last {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 2rem;
+}
+
+.legal-section h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-1);
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.legal-section h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 1rem 0 0.35rem;
+}
+
+.legal-section p {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.legal-section ul {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.8;
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.25rem;
+}
+
+.legal-section strong { color: var(--text-bright); font-weight: 700; }
+
+.legal-section code {
+  color: var(--cyan);
+  font-size: 0.85em;
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+a.link-cyan { color: var(--cyan); text-decoration: none; }
+
+/* Отступы, которые в React стояли инлайном на конкретных абзацах. */
+.mt-sm { margin-top: 0.75rem; }
+.mt-md { margin-top: 1.25rem; }
+.mb-xs { margin-bottom: 0.5rem; }
+.mb-sm { margin-bottom: 0.75rem; }
+
+/* ── Tables ───────────────────────────────────────────────────── */
+
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  color: var(--text-2);
+  margin-top: 0.75rem;
+}
+
+.legal-table th {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  background: rgba(34, 211, 238, 0.05);
+  color: var(--text-bright);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--hairline);
+}
+
+.legal-table td {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--hairline);
+  vertical-align: top;
+}
+
+.legal-table td.dim    { color: var(--text-muted); }
+.legal-table td.strong { color: var(--text-bright); font-weight: 500; }
+
+/* ── Highlight boxes ──────────────────────────────────────────── */
+
+.box {
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+
+.box-cyan {
+  background: rgba(34, 211, 238, 0.05);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+}
+
+.box-amber {
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+/* Держим тот же вес селектора, что и у `.legal-section strong` — иначе
+   акцент внутри плашки проигрывает по специфичности и уезжает в #cbd5e1. */
+.legal-section strong.hl-cyan  { color: var(--cyan); }
+.legal-section strong.hl-amber { color: var(--warning); }
+
+/* ── Footer nav ───────────────────────────────────────────────── */
+
+.legal-footer-nav {
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.75rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.legal-footer-nav a { font-size: 0.82rem; text-decoration: none; }
+.legal-footer-nav a.next { color: var(--cyan); }
+.legal-footer-nav a.home { color: var(--text-3); }

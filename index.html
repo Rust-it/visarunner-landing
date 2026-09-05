@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisaRunner — Stop Managing Visa Runs Manually | Booking Platform for Visa Run Operators</title>
+  <meta name="description" content="VisaRunner automates bookings, reminders and client management for visa run operators across Southeast Asia. Start your free 14-day trial today." />
+  <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
+  <meta name="theme-color" content="#22d3ee">
+  <!-- Не «#1»: превосходная степень, которую нечем подтвердить. Заголовок
+       совпадает с <title>, чтобы шеринг и выдача говорили одно и то же. -->
+  <meta property="og:title" content="VisaRunner — Stop Managing Visa Runs Manually | Booking Platform for Visa Run Operators">
+  <meta property="og:description" content="VisaRunner automates bookings, reminders &amp; client management for visa run operators across Southeast Asia. Start free 14-day trial, no credit card required.">
+  <meta property="og:image" content="https://visarunner.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://visarunner.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VisaRunner — Stop Managing Visa Runs Manually | Booking Platform for Visa Run Operators">
+  <meta name="twitter:description" content="VisaRunner automates bookings, reminders &amp; client management for visa run operators across Southeast Asia. Start free 14-day trial, no credit card required.">
+  <meta name="twitter:image" content="https://visarunner.io/og-image.png">
+  <link rel="canonical" href="https://visarunner.io/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "VisaRunner",
+    "url": "https://visarunner.io",
+    "description": "Automated booking and client management platform for visa run operators across Southeast Asia.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Solo Plan",
+        "price": "39",
+        "priceCurrency": "USD",
+        "description": "$39/mo billed monthly, or $29/mo billed annually.",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Monthly billing",
+            "price": "39",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "billingDuration": 1
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Annual billing",
+            "price": "29",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "billingDuration": 12
+          }
+        ]
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro Plan",
+        "price": "89",
+        "priceCurrency": "USD",
+        "description": "$89/mo billed monthly, or $69/mo billed annually. Includes a 14-day free trial.",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Monthly billing",
+            "price": "89",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "billingDuration": 1
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Annual billing",
+            "price": "69",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "billingDuration": 12
+          }
+        ]
+      },
+      {
+        "@type": "Offer",
+        "name": "Agency Plan",
+        "price": "149",
+        "priceCurrency": "USD",
+        "description": "$149/mo billed monthly, or $119/mo billed annually. Sold via sales contact.",
+        "priceSpecification": [
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Monthly billing",
+            "price": "149",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "billingDuration": 1
+          },
+          {
+            "@type": "UnitPriceSpecification",
+            "name": "Annual billing",
+            "price": "119",
+            "priceCurrency": "USD",
+            "unitText": "MONTH",
+            "billingDuration": 12
+          }
+        ]
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "VisaRunner",
+      "url": "https://visarunner.io"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="stylesheet" href="assets/css/landing.css" />
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="assets/brand/logo-full.svg" height="36" alt="VisaRunner"></a>
+  <div class="nav-end">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="mailto:support@visarunner.io" class="nav-cta"><span class="nav-cta-full">Start Free 14-Day Trial</span><span class="nav-cta-short">Start free trial</span></a>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    The booking platform built for visa run operators in Southeast Asia
+  </div>
+
+  <h1 class="reveal">
+    Stop Managing<br/>Visa Runs <span class="h1-gradient">Manually</span>
+  </h1>
+
+  <p class="hero-sub reveal reveal-delay-1">
+    VisaRunner automates bookings, reminders and client management for visa run operators across Southeast Asia
+  </p>
+
+  <div class="hero-actions reveal reveal-delay-2">
+    <a href="mailto:support@visarunner.io" class="btn-primary">
+      Start Free 14-Day Trial
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#how" class="btn-secondary">See how it works</a>
+  </div>
+
+  <p class="hero-note reveal reveal-delay-3">
+    14-day free trial on Pro <span>·</span> No credit card required <span>·</span> Cancel anytime
+  </p>
+
+  <div class="hero-flags reveal reveal-delay-4">
+    <span class="hero-flags-label">Built for visa runs in</span>
+    <div class="hero-flags-codes">
+      <span class="country-code" title="Vietnam">VN</span>
+      <span class="country-code" title="Thailand">TH</span>
+      <span class="country-code" title="Cambodia">KH</span>
+      <span class="country-code" title="Malaysia">MY</span>
+      <span class="country-code" title="Indonesia">ID</span>
+    </div>
+  </div>
+
+  <div class="hero-stats reveal reveal-delay-5">
+    <div class="hero-stat">
+      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-label">Countries</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3</span>
+      <span class="hero-stat-label">Languages (EN · RU · VI)</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">24/7</span>
+      <span class="hero-stat-label">Booking bot</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">14</span>
+      <span class="hero-stat-label">Day free trial on Pro</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PAIN ─── -->
+<section id="pain">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="reveal reveal-delay-1">Running visa runs is chaotic</h2>
+      <p class="section-sub reveal reveal-delay-2">Sound familiar? You're not alone.</p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-emoji">😤</span>
+        <h3>"Answering the same questions 50 times a day"</h3>
+      </div>
+      <div class="pain-card reveal reveal-delay-1">
+        <span class="pain-emoji">📱</span>
+        <h3>"Managing bookings in messy Telegram chats"</h3>
+      </div>
+      <div class="pain-card reveal reveal-delay-2">
+        <span class="pain-emoji">⏰</span>
+        <h3>"Clients forget their departure dates"</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label reveal">How It Works</div>
+      <h2 class="reveal reveal-delay-1">Up and running in minutes</h2>
+      <p class="section-sub reveal reveal-delay-2">No technical knowledge required. We handle everything for you.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Connect your Telegram bot</h3>
+        <p>Link your existing Telegram account or create a new bot. Takes about 5 minutes with our step-by-step guide.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">2</div>
+        <h3>Clients book automatically 24/7</h3>
+        <p>Your bot handles all inquiries, collects passenger details, and schedules bookings while you sleep.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">3</div>
+        <h3>You confirm with one tap</h3>
+        <p>Review bookings in your dashboard and confirm or reschedule with a single tap. No back-and-forth chaos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<!-- Бывшие #features (8 карточек) и #why (4 выгоды) дублировали друг друга:
+     «Telegram Bot» = «Clients book themselves», «Auto Reminders» = «Automatic
+     reminders» и т.д. Слито в 4 пункта, заголовок каждого — выгода, а не
+     название функции. Pro-функции живут в прайсе. -->
+<section id="features">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label reveal">What You Get</div>
+      <h2 class="reveal reveal-delay-1">Everything runs while you're offline</h2>
+      <p class="section-sub reveal reveal-delay-2">Built specifically for visa run operators — not a generic booking tool.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </div>
+        <div>
+          <h3>Clients book themselves at 3am</h3>
+          <p>Your Telegram bot takes inquiries, collects passenger details and confirms bookings in English, Vietnamese and Russian — while you're asleep or on the road.</p>
+        </div>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+        </div>
+        <div>
+          <h3>Nobody forgets their departure</h3>
+          <p>Reminders go out the evening before and the morning of departure — automatically, in the client's language.</p>
+        </div>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        </div>
+        <div>
+          <h3>Every booking in one place</h3>
+          <p>Filter, search and export the whole list from your phone, tablet or desktop. No spreadsheets, no scrolling back through group chats.</p>
+        </div>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h3>Pickup points without the guesswork</h3>
+          <p>Clients drop their location straight into Telegram and drivers see it in real time. No "where are you exactly?" at 6am.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label reveal">Pricing</div>
+      <h2 class="reveal reveal-delay-1">Simple, transparent pricing</h2>
+      <p class="section-sub reveal reveal-delay-2">14-day free trial on Pro. No credit card required.</p>
+      <div class="billing-toggle reveal reveal-delay-3">
+        <button class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+        <button class="toggle-btn" id="btn-yearly" onclick="setBilling('yearly')">
+          Yearly
+          <span class="save-badge">Save up to 26%</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Solo -->
+      <div class="pricing-card reveal">
+        <div class="plan-name">Solo</div>
+        <div class="plan-price">
+          <span class="price-monthly">$39</span><span class="price-yearly">$29</span><sub>/mo</sub>
+        </div>
+        <div class="yearly-save">$29/mo · billed annually · save 26%</div>
+        <div class="monthly-hint">Save 26% with annual billing</div>
+        <div class="plan-desc">Perfect for operators just getting started.</div>
+        <ul class="plan-features">
+          <li>Up to 100 bookings/month</li>
+          <li>Telegram bot for clients</li>
+          <li>Web dashboard</li>
+          <li>Auto reminders</li>
+          <li>Email support</li>
+        </ul>
+        <a href="mailto:support@visarunner.io?subject=VisaRunner%20Solo%20plan" class="plan-btn outline">Start Free 14-Day Trial →</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card popular reveal reveal-delay-1">
+        <!-- Не «Most Popular»: соцдоказательство, которого нет. -->
+        <div class="popular-badge">Recommended</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">
+          <span class="price-monthly">$89</span><span class="price-yearly">$69</span><sub>/mo</sub>
+        </div>
+        <div class="yearly-save">$69/mo · billed annually · save 22%</div>
+        <div class="monthly-hint">Save 22% with annual billing</div>
+        <div class="plan-desc">For growing operators with regular routes.</div>
+        <ul class="plan-features">
+          <li>Everything in Solo</li>
+          <li>Up to 300 bookings/month</li>
+          <li>CSV export</li>
+          <li>Routes analytics</li>
+          <li>Broadcast messages to all clients</li>
+          <li>Custom bot greeting</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="mailto:support@visarunner.io?subject=VisaRunner%20Pro%20plan" class="plan-btn filled">Start Free 14-Day Trial →</a>
+      </div>
+
+      <!-- Agency -->
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="plan-name">Agency</div>
+        <div class="plan-price">
+          <span class="price-monthly">$149</span><span class="price-yearly">$119</span><sub>/mo</sub>
+        </div>
+        <div class="yearly-save">$119/mo · billed annually · save 20%</div>
+        <div class="monthly-hint">Save 20% with annual billing</div>
+        <div class="plan-desc">For large agencies managing multiple operators.</div>
+        <ul class="plan-features">
+          <li>Unlimited bookings</li>
+          <li>White-label (your brand)</li>
+          <li>Multi-operator dashboard</li>
+          <li>Custom bot name &amp; logo</li>
+          <li>Analytics &amp; revenue reports</li>
+          <li>API access</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="mailto:support@visarunner.io?subject=VisaRunner%20Agency%20plan" class="plan-btn outline">Contact Sales →</a>
+      </div>
+    </div>
+
+    <p class="pricing-note reveal">14-day free trial on Pro · No credit card required · Cancel anytime · Prices in USD</p>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-wrap reveal">
+      <div class="cta-box">
+        <div class="section-label">Get Started</div>
+        <h2>Start automating your visa run bookings today</h2>
+        <p>Stop losing clients to disorganized Telegram chats.<br/>Automate your booking flow today.</p>
+        <div class="hero-actions">
+          <a href="mailto:support@visarunner.io" class="btn-primary btn-primary--lg">
+            Start Free 14-Day Trial →
+          </a>
+        </div>
+        <p class="cta-note">14-day free trial on Pro · No credit card · Cancel anytime</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="assets/brand/logo-white.svg" height="30" alt="VisaRunner"></a>
+    <div class="footer-countries">
+      <span>Vietnam</span> &nbsp;·&nbsp;
+      <span>Thailand</span> &nbsp;·&nbsp;
+      <span>Cambodia</span> &nbsp;·&nbsp;
+      <span>Malaysia</span> &nbsp;·&nbsp;
+      <span>Indonesia</span>
+    </div>
+    <div class="footer-meta">
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="mailto:support@visarunner.io">Support: support@visarunner.io</a>
+      </div>
+      <div class="footer-copy">© 2026 VisaRunner. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/landing.js"></script>
+</body>
+</html>
