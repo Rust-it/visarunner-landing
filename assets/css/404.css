@@ -1,0 +1,148 @@
+/* VisaRunner 404 — transcribed from the Next.js app/not-found.tsx, whose React
+   inline style objects become classes here. Values and tokens are unchanged. */
+
+:root {
+  --bg:         #080b10;
+  --text-1:     #e2e8f0;
+  --text-muted: #64748b;
+  --cyan:       #22d3ee;
+  --on-accent:  #060a0f;  /* dark text on cyan buttons */
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.18);
+  color: var(--text-1);
+}
+
+/* ── Background layers ────────────────────────────────────────── */
+
+.bg-dots,
+.bg-glow,
+.bg-edge {
+  position: absolute;
+  pointer-events: none;
+}
+
+.bg-dots {
+  inset: 0;
+  background-image: radial-gradient(rgba(34, 211, 238, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-glow {
+  inset: 0;
+  background: radial-gradient(ellipse 70% 40% at 50% -5%, rgba(34, 211, 238, 0.09) 0%, transparent 70%);
+}
+
+.bg-edge {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(34, 211, 238, 0.25) 35%,
+    rgba(34, 211, 238, 0.12) 65%,
+    transparent 100%);
+}
+
+/* ── Content ──────────────────────────────────────────────────── */
+
+/* Скрытое начальное состояние держим в from-кейфрейме (fill-mode both):
+   при prefers-reduced-motion длительность схлопывается, но блок остаётся виден. */
+@keyframes vr-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.nf {
+  position: relative;
+  text-align: center;
+  animation: vr-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nf-logo { margin-bottom: 2.5rem; }
+.nf-logo img { display: inline-block; opacity: 0.7; }
+
+.nf-code {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(6rem, 20vw, 10rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--cyan) 0%, rgba(34, 211, 238, 0.4) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 1.25rem;
+  user-select: none;
+}
+
+.nf h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  color: var(--text-1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.6rem;
+}
+
+.nf p {
+  color: var(--text-muted);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.72rem 1.5rem;
+  background: var(--cyan);
+  color: var(--on-accent);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: filter 0.15s;
+}
+
+.nf-btn:hover  { filter: brightness(1.1); }
+.nf-btn:active { transform: scale(0.985); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
