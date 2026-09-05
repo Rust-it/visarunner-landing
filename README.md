@@ -7,6 +7,8 @@ Plain HTML + CSS + one small vanilla JS file. No Next.js, no npm, no bundler.
 index.html          landing page
 privacy.html        Privacy Policy
 terms.html          Terms of Service
+robots.txt          allows all crawlers, points at the sitemap
+sitemap.xml         the three pages above
 assets/
   css/landing.css   landing styles (design tokens, sections, breakpoints)
   css/legal.css     styles for the two legal pages
@@ -37,6 +39,16 @@ straight off the filesystem (`file://`), off a USB stick, or from any static hos
 
 The visual design is unchanged: same tokens, same sections, same breakpoints and
 the same page height as the original at 1440px wide.
+
+## Canonical URLs
+
+`robots.txt`, `sitemap.xml` and the three `<link rel="canonical">` tags all use
+the flat `.html` URLs this bundle actually serves — `/`, `/privacy.html`,
+`/terms.html`. The production Next.js site serves the legal pages at extensionless
+`/privacy` and `/terms` instead, so if this bundle is ever put behind
+`visarunner.io` in front of (or alongside) that app, change the canonicals and the
+sitemap together — a canonical pointing at a URL the host does not serve is worse
+than none.
 
 ## Editing
 
